@@ -11,9 +11,9 @@ class ApiService {
         return this.axiosApp.get(`?sourceCurrency=EUR&targetCurrency=MXN&sendAmount=1000`)
     }
 
-    // getInput() {
-    //     return this.axiosApp.get(`?sourceCurrency=${sourceCurrency}&targetCurrency=${targetCurrency}&sendAmount=${ammount}`)
-    // }
+    getSourceCurrency(inputValue) {
+        return this.axiosApp.get(`?sourceCurrency=${inputValue}`)
+    }
 }
 
 const apiService = new ApiService()
