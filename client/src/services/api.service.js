@@ -7,13 +7,17 @@ class ApiService {
         })
     }
 
-    getInput() {
-        return this.axiosApp.get(`?sourceCurrency=EUR&targetCurrency=MXN&sendAmount=1000`)
+    // getInput() {
+    //     return this.axiosApp.get(`?sourceCurrency=EUR&targetCurrency=MXN&sendAmount=1000`)
+    // }
+
+    getInput(sourceCurrency, targetCurrency, sendAmount) {
+        return this.axiosApp.get(`?sourceCurrency=${sourceCurrency}&targetCurrency=${targetCurrency}&sendAmount=${sendAmount}`)
     }
 
-    getSourceCurrency(inputValue) {
-        return this.axiosApp.get(`?sourceCurrency=${inputValue}`)
-    }
+    // getSourceCurrency(inputValue) {
+    //     return this.axiosApp.get(`?sourceCurrency=${inputValue}`)
+    // }
 }
 
 const apiService = new ApiService()
