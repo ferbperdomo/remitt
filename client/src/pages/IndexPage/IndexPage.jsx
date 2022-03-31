@@ -1,50 +1,74 @@
 import apiService from '../../services/api.service'
-import { useState, useEffect } from 'react'
-import { Container, Form, FormControl, Button } from 'react-bootstrap'
+import countriesService from '../../services/countries.service'
+import { useState } from 'react'
+import { Container, Form, FormControl, Button, Col, Row } from 'react-bootstrap'
+import '../IndexPage/indexPage.css'
 
 const IndexPage = () => {
     const [input, setInput] = useState({
         sourceCurrency: "",
         targetCurrency: "",
-        sendAmount: 0
+        sendAmount: ''
     })
 
-    const [source, setSource] = useState(false)
+    const [source, setSource] = useState()
+    const [sourceCountry, setSourceCountry] = useState()
+    const [targetCountry, setTargetCountry] = useState()
 
     const { sourceCurrency, targetCurrency, sendAmount } = input
-
-    useEffect(() => {
-        checkInput()
-    }, [])
-
-    const checkInput = () => {
-        if (input) {
-            setSource(true)
-        }
-    }
 
     const handleInput = e => {
         const { name, value } = e.target
         setInput({ ...input, [name]: value })
-
     }
+
+    const handleSourceInput = e => {
+        const { name, value } = e.target
+        setInput({ ...input, [name]: value })
+        sourceCall(sourceCurrency)
+    }
+
+    const handleTargetInput = e => {
+        const { name, value } = e.target
+        setInput({ ...input, [name]: value })
+        targetCall(targetCurrency)
+    }
+
+
     const handleSubmit = e => {
         e.preventDefault()
         oneCall()
     }
+
+
+    const sourceCall = () => {
+        countriesService
+            .getCountry(sourceCurrency)
+            .then(({ data }) => {
+                setSourceCountry(data)
+                console.log('pais que envía', data)
+            })
+            .catch(err => console.log(err))
+    }
+
+    const targetCall = () => {
+        countriesService
+            .getCountry(targetCurrency)
+            .then(({ data }) => {
+                setTargetCountry(data)
+                console.log('pais que recibe', data)
+            })
+            .catch(err => console.log(err))
+    }
+
     const oneCall = () => {
-        // setSource(e.target.value)
         apiService
             .getInput(sourceCurrency, targetCurrency, sendAmount)
             .then(({ data }) => {
                 setSource(data.providers)
-                console.log(data)
             })
             .catch(err => console.log(err))
-
     }
-
-
     return (
 
         <>
@@ -53,18 +77,18 @@ const IndexPage = () => {
                     <FormControl
                         id="sourceCurrency"
                         type="text"
-                        placeholder="País de origen"
+                        placeholder="Moneda de origen"
                         name='sourceCurrency'
                         value={sourceCurrency}
-                        onChange={handleInput}
+                        onChange={handleSourceInput}
                     />
                     <FormControl
                         id="targetCurrency"
                         type="text"
-                        placeholder="País de destino"
+                        placeholder="Moneda de destino"
                         name='targetCurrency'
                         value={targetCurrency}
-                        onChange={handleInput}
+                        onChange={handleTargetInput}
                     />
                     <FormControl
                         id="sendAmount"
@@ -83,20 +107,31 @@ const IndexPage = () => {
                 <p>Moneda enviada: {sourceCurrency}</p>
                 <p>Moneda recibida: {targetCurrency}</p>
                 <p>Cantidad a enviar: {sendAmount}</p>
+                <hr />
                 <h2>Entre las distintas opciones que encontramos, te ofrecemos estas:</h2>
 
-                {/* {
+                {
                     source?.map(provider => {
-                        const { name, type, quotes } = provider
+                        const { name, type, logos, quotes } = provider
+
                         return <>
-                            <p>{type}: {name}</p>
-                            <p>tipo de cambio: {quotes[0].rate} mxn</p>
-                            <p>comisión: {quotes[0].fee} euros</p>
-                            <p>cantidad recibida: {quotes[0].receivedAmount} mxn</p>
+                            <Row className="justify-content-center text-center">
+
+                                <Col >
+                                    <img className='logos' src={logos.normal.pngUrl} />
+                                    <p>{type}: {name}</p>
+                                </Col>
+                                <Col className='mt-3' >
+                                    <p>tipo de cambio: {quotes[0].rate} {targetCurrency}</p>
+                                    <p>comisión: {quotes[0].fee} {sourceCurrency}</p>
+                                    <p>cantidad recibida: {quotes[0].receivedAmount} {targetCurrency}</p>
+                                </Col>
+                            </Row>
+
                             <hr />
                         </>
                     })
-                } */}
+                }
 
             </Container>
 
