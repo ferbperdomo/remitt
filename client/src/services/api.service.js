@@ -11,7 +11,6 @@ class ApiService {
         return this.axiosApp.get(`?sourceCurrency=${sourceCurrency}&targetCurrency=${targetCurrency}&sendAmount=${sendAmount}`)
     }
 
-   
 }
 
 const apiService = new ApiService()

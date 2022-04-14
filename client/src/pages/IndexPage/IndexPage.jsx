@@ -1,8 +1,8 @@
 import apiService from '../../services/api.service'
-import countriesService from '../../services/countries.service'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Container, Form, FormControl, Button, Col, Row } from 'react-bootstrap'
 import '../IndexPage/indexPage.css'
+import countries from "../../countries.json"
 
 const IndexPage = () => {
     const [input, setInput] = useState({
@@ -11,54 +11,37 @@ const IndexPage = () => {
         sendAmount: ''
     })
 
+    const [sourceCountry, setSourceCountry] = useState(countries)
+    // const [sourceCountrySearch, setSourceCountrySearch] = useState(countries)
     const [source, setSource] = useState()
-    const [sourceCountry, setSourceCountry] = useState()
-    const [targetCountry, setTargetCountry] = useState()
 
     const { sourceCurrency, targetCurrency, sendAmount } = input
+
+    useEffect(() => {
+        countrySearch()
+    }, [])
+
+    useEffect(() => {
+        sourceCountry && countrySearch()
+    }, [])
 
     const handleInput = e => {
         const { name, value } = e.target
         setInput({ ...input, [name]: value })
+        // setSourceCountry(e.target.value)
+        // console.log('source country', sourceCurrency)
     }
-
-    const handleSourceInput = e => {
-        const { name, value } = e.target
-        setInput({ ...input, [name]: value })
-        sourceCall(sourceCurrency)
-    }
-
-    const handleTargetInput = e => {
-        const { name, value } = e.target
-        setInput({ ...input, [name]: value })
-        targetCall(targetCurrency)
-    }
-
 
     const handleSubmit = e => {
         e.preventDefault()
         oneCall()
     }
 
-
-    const sourceCall = () => {
-        countriesService
-            .getCountry(sourceCurrency)
-            .then(({ data }) => {
-                setSourceCountry(data)
-                console.log('pais que envía', data)
-            })
-            .catch(err => console.log(err))
-    }
-
-    const targetCall = () => {
-        countriesService
-            .getCountry(targetCurrency)
-            .then(({ data }) => {
-                setTargetCountry(data)
-                console.log('pais que recibe', data)
-            })
-            .catch(err => console.log(err))
+    const countrySearch = sourceCurrency => {
+        const filteredCountries = sourceCountry?.filter(elm => elm.name === sourceCurrency)
+        setSourceCountry(filteredCountries)
+        console.log('país filtrado', filteredCountries)
+        // console.log('hello', sourceCountry[2].name) funciona
     }
 
     const oneCall = () => {
@@ -72,23 +55,26 @@ const IndexPage = () => {
     return (
 
         <>
+
             <Container className="input">
                 <Form className="d-flex mb-3 mt-5" onSubmit={handleSubmit}>
                     <FormControl
                         id="sourceCurrency"
-                        type="text"
+                        type="search"
                         placeholder="Moneda de origen"
                         name='sourceCurrency'
+                        aria-label="Search"
                         value={sourceCurrency}
-                        onChange={handleSourceInput}
+                        onChange={handleInput}
                     />
                     <FormControl
                         id="targetCurrency"
-                        type="text"
+                        type="search"
                         placeholder="Moneda de destino"
                         name='targetCurrency'
+                        aria-label="Search"
                         value={targetCurrency}
-                        onChange={handleTargetInput}
+                        onChange={handleInput}
                     />
                     <FormControl
                         id="sendAmount"
