@@ -2,7 +2,70 @@ h2 {
     font-size: 1.3em;
     text-align: center;
 }
-.logos{
+
+.logos {
     width: 20%;
     margin: 20px;
+}
+
+.title img {
+    width: 50px;
+    opacity: 0.5;
+}
+
+.title .greenflow {
+    animation: greenmove 3s infinite ease-in;
+}
+
+.title .pinkflow {
+    animation: pinkmove 3s infinite ease-in;
+}
+
+.title .beigeflow {
+    animation: beigemove 3s infinite ease-in;
+}
+
+@keyframes beigemove {
+    0% {
+        transform: translateX(0vw);
+    }
+
+    50% {
+        transform: translateX(50vw);
+    }
+
+    100% {
+        transform: translateX(0vw);
+    }
+}
+
+
+@keyframes pinkmove {
+    0% {
+        transform: translateX(50vw);
+    }
+
+    50% {
+        transform: translateX(0vw);
+    }
+
+    100% {
+        transform: translateX(50vw);
+    }
+}
+
+@keyframes greenmove {
+
+    0% {
+        -webkit-transform: translatex(0);
+    }
+
+
+    50% {
+        -webkit-transform: translatex(70vw);
+    }
+
+    100% {
+        -webkit-transform: translatex(0);
+    }
 }
