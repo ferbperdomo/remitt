@@ -1,5 +1,5 @@
 import apiService from '../../services/api.service'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Container, Form, FormControl, Button, Col, Row } from 'react-bootstrap'
 import '../IndexPage/indexPage.css'
 import greenflow from '../../img/greenflow.png'
@@ -16,8 +16,9 @@ const IndexPage = () => {
 
     const [source, setSource] = useState()
     const [sourceCountry, setSourceCountry] = useState()
-    const [targetCountry, setTargetCountry] = useState()
     const { sourceCurrency, targetCurrency, sendAmount } = input
+
+
 
     const handleInput = e => {
         const { name, value } = e.target
@@ -30,23 +31,13 @@ const IndexPage = () => {
     }
 
     const oneCall = () => {
-
-        const sendCountry = countries.find(country => country.name === sourceCurrency)
-        setSourceCountry(sendCountry.currency.code)
-
-        const receiveCountry = countries.find(country => country.name === targetCurrency)
-        setTargetCountry(receiveCountry.currency.code)
-
         apiService
-            .getInput(sendCountry.currency.code, receiveCountry.currency.code, sendAmount)
+            .getInput(sourceCurrency, targetCurrency, sendAmount)
             .then(({ data }) => {
                 setSource(data.providers)
-                console.log('data', data)
             })
             .catch(err => console.log(err))
     }
-
-
     return (
 
         <Container className='main'>
@@ -60,23 +51,22 @@ const IndexPage = () => {
             <Container className="input mb-5">
                 <Form className="mb-3 mt-5" onSubmit={handleSubmit}>
                     <FormControl
-
-                        id="sourcecountry"
+                        id="sourceCurrency"
                         type="search"
-                        placeholder="País remitente"
+                        placeholder="Moneda de origen"
                         name='sourceCurrency'
                         aria-label="Search"
-                        value={sourceCountry}
+                        value={sourceCurrency}
                         onChange={handleInput}
                     />
                     <br />
                     <FormControl
                         id="targetCurrency"
                         type="search"
-                        placeholder="País destinatario"
+                        placeholder="Moneda de destino"
                         name='targetCurrency'
                         aria-label="Search"
-                        value={targetCountry}
+                        value={targetCurrency}
                         onChange={handleInput}
                     />
                     <br />
@@ -89,15 +79,12 @@ const IndexPage = () => {
                         onChange={handleInput}
                     />
                     <br />
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
-                </Form>
-
+                    <Button className="form-button" type="submit">Buscar</Button>
+                </Form >
 
             </Container >
-            {
 
+            {
                 !source ?
 
                     <p>Por favor introduce lo datos</p>
