@@ -18,10 +18,11 @@ const IndexPage = () => {
     })
 
     const [source, setSource] = useState()
+    const [currencies, setCurrencies] = useState()
     const [sourceCountry, setSourceCountry] = useState()
     const [targetCountry, setTargetCountry] = useState()
     const { sourceCurrency, targetCurrency, sendAmount } = input
-    console.log('source currency', sourceCurrency)
+    console.log('currencies ', currencies)
 
     const handleInput = e => {
         const { name, value } = e.target
@@ -32,7 +33,6 @@ const IndexPage = () => {
         e.preventDefault()
         oneCall()
     }
-
 
     const oneCall = () => {
 
@@ -46,10 +46,12 @@ const IndexPage = () => {
             .getInput(sendCountry.currency.code, receiveCountry.currency.code, sendAmount)
             .then(({ data }) => {
                 setSource(data.providers)
+                setCurrencies(data)
                 console.log('data', data)
             })
             .catch(err => console.log(err))
     }
+
 
 
     return (
@@ -72,7 +74,6 @@ const IndexPage = () => {
                     </div>
                     <Form className="mb-3 mt-3" onSubmit={handleSubmit}>
                         <FormControl
-
                             id="sourcecountry"
                             type="search"
                             placeholder="País remitente"
@@ -131,11 +132,11 @@ const IndexPage = () => {
                                                         :
                                                         <img className='logos' src={logos.white.pngUrl} />
                                                 }
-                                                <p>comisión: {quotes[0].fee} {sourceCurrency}</p>
+                                                <p>comisión: {quotes[0].fee} {currencies?.sourceCurrency}</p>
                                             </Col>
                                             <Col className='mt-3' >
-                                                <p>tipo de cambio: {quotes[0].rate} {targetCurrency}</p>
-                                                <p>cantidad recibida: {quotes[0].receivedAmount} {targetCurrency}</p>
+                                                <p>tipo de cambio: {quotes[0].rate} {currencies?.sourceCurrency} </p>
+                                                <p>cantidad recibida: {quotes[0].receivedAmount} {currencies?.targetCurrency}</p>
                                             </Col>
                                         </Row>
 

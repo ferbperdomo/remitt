@@ -23,6 +23,11 @@ body {
   background-color: #EFE7DD !important;
 } */
 
+.btn-light {
+  background-color: white;
+  border: 1px solid #EFE7DD;
+}
+
 .btn-light:focus {
   background-color: white;
   box-shadow: none;
