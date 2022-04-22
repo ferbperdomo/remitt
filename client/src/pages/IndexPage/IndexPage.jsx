@@ -32,7 +32,7 @@ const IndexPage = () => {
         e.preventDefault()
         oneCall()
     }
-    
+
 
     const oneCall = () => {
 
@@ -55,94 +55,98 @@ const IndexPage = () => {
     return (
 
         <div className={theme}>
-            <Button className="theme-btn" variant='light' onClick={toggleTheme}>
-                {theme === 'light' ? 'dark 🌜' : 'light 🟡'}
-            </Button>
-            <article className='title' >
-                <h1>Envío de dinero al exterior</h1>
-                <img className='greenflow' src={greenflow} alt="testing color" />
-                <img className='pinkflow' src={pinkflow} alt="testing color" />
-                <img className='beigeflow' src={beigeflow} alt="testing color" />
-            </article>
-            <hr />
-            <Container className="input mb-5">
-                <Form className="mb-3 mt-5" onSubmit={handleSubmit}>
-                    <FormControl
+            <Container className='main'>
+                <article className='title' >
+                    <h1>Envío de dinero al exterior</h1>
+                    <img className='greenflow' src={greenflow} alt="testing color" />
+                    <img className='pinkflow' src={pinkflow} alt="testing color" />
+                    <img className='beigeflow' src={beigeflow} alt="testing color" />
+                </article>
+                <hr />
+                <Container className="input mb-5">
+                    <div className="d-flex justify-content-end">
+                        <Button className="theme-btn pull-right" size='sm' variant='outline-light' onClick={toggleTheme}>
+                            {theme === 'light' ? '🌜' : '🌞'}
+                        </Button>
 
-                        id="sourcecountry"
-                        type="search"
-                        placeholder="País remitente"
-                        name='sourceCurrency'
-                        aria-label="Search"
-                        value={sourceCountry}
-                        onChange={handleInput}
-                    />
-                    <br />
-                    <FormControl
-                        id="targetCurrency"
-                        type="search"
-                        placeholder="País destinatario"
-                        name='targetCurrency'
-                        aria-label="Search"
-                        value={targetCountry}
-                        onChange={handleInput}
-                    />
-                    <br />
-                    <FormControl
-                        id="sendAmount"
-                        type="number"
-                        placeholder="Cantidad a enviar"
-                        name='sendAmount'
-                        value={sendAmount}
-                        onChange={handleInput}
-                    />
-                    <br />
-                    <Button variant="light" type="submit">
-                        Submit
-                    </Button>
-                </Form>
+                    </div>
+                    <Form className="mb-3 mt-3" onSubmit={handleSubmit}>
+                        <FormControl
+
+                            id="sourcecountry"
+                            type="search"
+                            placeholder="País remitente"
+                            name='sourceCurrency'
+                            aria-label="Search"
+                            value={sourceCountry}
+                            onChange={handleInput}
+                        />
+                        <br />
+                        <FormControl
+                            id="targetCurrency"
+                            type="search"
+                            placeholder="País destinatario"
+                            name='targetCurrency'
+                            aria-label="Search"
+                            value={targetCountry}
+                            onChange={handleInput}
+                        />
+                        <br />
+                        <FormControl
+                            id="sendAmount"
+                            type="number"
+                            placeholder="Cantidad a enviar"
+                            name='sendAmount'
+                            value={sendAmount}
+                            onChange={handleInput}
+                        />
+                        <br />
+                        <Button variant="light" type="submit">
+                            Submit
+                        </Button>
+                    </Form>
 
 
-            </Container >
-            {
+                </Container >
+                {
 
-                !source ?
+                    !source ?
 
-                    <p>Por favor introduce lo datos</p>
+                        <p>Por favor introduce lo datos</p>
 
-                    :
-                    <>
-                        <h2>Entre las distintas opciones que encontramos, te ofrecemos estas:</h2>
-                        {
-                            source?.map(provider => {
-                                const { logos, quotes } = provider
+                        :
+                        <>
+                            <h2>Entre las distintas opciones que encontramos, te ofrecemos estas:</h2>
+                            {
+                                source?.map(provider => {
+                                    const { logos, quotes } = provider
 
-                                return <>
-                                    <Row className="justify-content-center text-center">
+                                    return <>
+                                        <Row className="justify-content-center text-center">
 
-                                        <Col >
-                                            {
-                                                theme === 'light' ?
-                                                    <img className='logos' src={logos.normal.pngUrl} />
-                                                    :
-                                                    <img className='logos' src={logos.white.pngUrl} />
-                                            }
-                                            <p>comisión: {quotes[0].fee} {sourceCurrency}</p>
-                                        </Col>
-                                        <Col className='mt-3' >
-                                            <p>tipo de cambio: {quotes[0].rate} {targetCurrency}</p>
-                                            <p>cantidad recibida: {quotes[0].receivedAmount} {targetCurrency}</p>
-                                        </Col>
-                                    </Row>
+                                            <Col >
+                                                {
+                                                    theme === 'light' ?
+                                                        <img className='logos' src={logos.normal.pngUrl} />
+                                                        :
+                                                        <img className='logos' src={logos.white.pngUrl} />
+                                                }
+                                                <p>comisión: {quotes[0].fee} {sourceCurrency}</p>
+                                            </Col>
+                                            <Col className='mt-3' >
+                                                <p>tipo de cambio: {quotes[0].rate} {targetCurrency}</p>
+                                                <p>cantidad recibida: {quotes[0].receivedAmount} {targetCurrency}</p>
+                                            </Col>
+                                        </Row>
 
-                                    <hr />
-                                </>
-                            })
-                        }
-                        <p>De momento solo tenemos estas opciones</p>
-                    </>
-            }
-
+                                        <hr />
+                                    </>
+                                })
+                            }
+                            <p>De momento solo tenemos estas opciones</p>
+                        </>
+                }
+            </Container>
 
         </div>
 

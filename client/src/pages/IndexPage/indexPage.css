@@ -9,7 +9,8 @@ p {
 }
 
 .main {
-    padding: 50px 30px;
+    padding: 30px;
+    min-height: 100vh;
 }
 
 .input {

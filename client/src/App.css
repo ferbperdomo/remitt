@@ -9,10 +9,28 @@ body {
     sans-serif;
 }
 
+
 .theme-btn {
   padding: 2px 15px;
-  font-size: 1rem;
+  background-color: transparent !important;
+  border: none;
+  font-size: 3em;
   text-align: center;
+  box-shadow: none;
+}
+
+/* .theme-btn:hover {
+  background-color: #EFE7DD !important;
+} */
+
+.btn-light:focus {
+  background-color: white;
+  box-shadow: none;
+}
+
+.btn-light:hover {
+  background-color: black;
+  color: white;
 }
 
 .light {
