@@ -1,13 +1,16 @@
 import apiService from '../../services/api.service'
-import { useState, useEffect } from 'react'
+import { useState, useContext } from 'react'
 import { Container, Form, FormControl, Button, Col, Row } from 'react-bootstrap'
 import '../IndexPage/indexPage.css'
 import greenflow from '../../img/greenflow.png'
 import pinkflow from '../../img/pinkflow.png'
 import beigeflow from '../../img/beigeflow.png'
 import countries from '../../countries.json'
+import { ThemeContext } from '../../context/theme.context'
 
 const IndexPage = () => {
+    const { theme, toggleTheme } = useContext(ThemeContext)
+
     const [input, setInput] = useState({
         sourceCurrency: "",
         targetCurrency: "",
@@ -18,6 +21,7 @@ const IndexPage = () => {
     const [sourceCountry, setSourceCountry] = useState()
     const [targetCountry, setTargetCountry] = useState()
     const { sourceCurrency, targetCurrency, sendAmount } = input
+    console.log('source currency', sourceCurrency)
 
     const handleInput = e => {
         const { name, value } = e.target
@@ -28,6 +32,7 @@ const IndexPage = () => {
         e.preventDefault()
         oneCall()
     }
+    
 
     const oneCall = () => {
 
@@ -49,7 +54,10 @@ const IndexPage = () => {
 
     return (
 
-        <Container className='main'>
+        <div className={theme}>
+            <Button className="theme-btn" variant='light' onClick={toggleTheme}>
+                {theme === 'light' ? 'dark 🌜' : 'light 🟡'}
+            </Button>
             <article className='title' >
                 <h1>Envío de dinero al exterior</h1>
                 <img className='greenflow' src={greenflow} alt="testing color" />
@@ -89,7 +97,7 @@ const IndexPage = () => {
                         onChange={handleInput}
                     />
                     <br />
-                    <Button variant="primary" type="submit">
+                    <Button variant="light" type="submit">
                         Submit
                     </Button>
                 </Form>
@@ -113,7 +121,12 @@ const IndexPage = () => {
                                     <Row className="justify-content-center text-center">
 
                                         <Col >
-                                            <img className='logos' src={logos.normal.pngUrl} />
+                                            {
+                                                theme === 'light' ?
+                                                    <img className='logos' src={logos.normal.pngUrl} />
+                                                    :
+                                                    <img className='logos' src={logos.white.pngUrl} />
+                                            }
                                             <p>comisión: {quotes[0].fee} {sourceCurrency}</p>
                                         </Col>
                                         <Col className='mt-3' >
@@ -131,7 +144,7 @@ const IndexPage = () => {
             }
 
 
-        </Container>
+        </div>
 
     )
 

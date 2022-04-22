@@ -1,3 +1,36 @@
 body {
-  font-family: sans-serif;
+  font-family: -apple-system,
+    system-ui,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+}
+
+.theme-btn {
+  padding: 2px 15px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.light {
+  background-color: white;
+}
+
+.dark {
+  background-color: black;
+}
+
+.light p,
+.light h1,
+.light h2 {
+  color: black;
+}
+
+.dark p,
+.dark h1,
+.dark h2 {
+  color: white;
 }
