@@ -1,10 +1,6 @@
 import apiService from '../../services/api.service'
 import { useState, useContext } from 'react'
-import { Container, Form, FormControl, Button, Col, Row } from 'react-bootstrap'
 import '../IndexPage/indexPage.css'
-import greenflow from '../../img/greenflow.png'
-import pinkflow from '../../img/pinkflow.png'
-import beigeflow from '../../img/beigeflow.png'
 import countries from '../../countries.json'
 import { ThemeContext } from '../../context/theme.context'
 
@@ -51,31 +47,25 @@ const IndexPage = () => {
 
     }
 
-    // const handleClick = () => {
-    //     setInput({ sourceCountry: '', targetCountry: '', sendAmount: '' })
-    // }
-
 
     return (
 
         <div className={theme}>
-            <Container className='main'>
-                <article className='title' >
+            <div className='main'>
+                <article className='title text-5xl' >
                     <h1>Envío de dinero al exterior</h1>
-                    <img className='greenflow' src={greenflow} alt="green ball floating" />
-                    <img className='pinkflow' src={pinkflow} alt="pink ball floating" />
-                    <img className='beigeflow' src={beigeflow} alt="beige ball floating" />
                 </article>
                 <hr />
-                <Container className="input mb-5">
-                    <div className="d-flex justify-content-end">
-                        <Button className="theme-btn pull-right" size='sm' variant='outline-light' onClick={toggleTheme}>
+                <div className="input mb-5">
+                    <div >
+                        <button className="theme-btn pull-right" size='sm' variant='outline-light' onClick={toggleTheme}>
                             {theme === 'light' ? '🌜' : '🌞'}
-                        </Button>
+                        </button>
 
                     </div>
-                    <Form className="mb-3 mt-3" onSubmit={handleSubmit}>
-                        <FormControl
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            className='form-control'
                             id="sourcecountry"
                             type="search"
                             placeholder="País remitente"
@@ -85,7 +75,9 @@ const IndexPage = () => {
                             onChange={handleInput}
                         />
                         <br />
-                        <FormControl
+                        <input
+                            className='form-control'
+
                             id="targetCurrency"
                             type="search"
                             placeholder="País destinatario"
@@ -95,7 +87,9 @@ const IndexPage = () => {
                             onChange={handleInput}
                         />
                         <br />
-                        <FormControl
+                        <input
+                            className='form-control'
+
                             id="sendAmount"
                             type="number"
                             placeholder="Cantidad a enviar"
@@ -104,18 +98,18 @@ const IndexPage = () => {
                             onChange={handleInput}
                         />
                         <br />
-                        <Button variant="light" className='submit-btn' type="submit">
+                        <button className='submit-btn' type="submit">
                             Submit
-                        </Button>
-                        <Button variant="light" type="submit">
+                        </button>
+                        <button className='submit-btn' type="submit">
                             <a href="/">
                                 Reset
                             </a>
-                        </Button>
-                    </Form>
+                        </button>
+                    </form>
 
 
-                </Container >
+                </div >
                 {
 
                     !source ?
@@ -132,9 +126,9 @@ const IndexPage = () => {
 
                                     return (
                                         <>
-                                            <Row className="justify-content-center text-center" >
+                                            <div className="justify-content-center text-center" >
 
-                                                <Col key={provider.id} >
+                                                <div key={provider.id} >
                                                     {
                                                         theme === 'light' ?
                                                             <img className='logos' alt='bank logo' src={logos.normal.pngUrl} />
@@ -142,12 +136,12 @@ const IndexPage = () => {
                                                             <img className='logos' alt='bank logo' src={logos.white.pngUrl} />
                                                     }
                                                     <p>comisión: {quotes[0].fee} {currencies?.sourceCurrency}</p>
-                                                </Col>
-                                                <Col className='mt-3' >
+                                                </div>
+                                                <div className='mt-3' >
                                                     <p>tipo de cambio: {quotes[0].rate} {currencies?.sourceCurrency} </p>
                                                     <p>cantidad recibida: {quotes[0].receivedAmount} {currencies?.targetCurrency}</p>
-                                                </Col>
-                                            </Row>
+                                                </div>
+                                            </div>
 
                                             <hr />
                                         </>
@@ -157,7 +151,7 @@ const IndexPage = () => {
                             <p>De momento solo tenemos estas opciones</p>
                         </>
                 }
-            </Container>
+            </div>
 
         </div>
 

@@ -1,20 +1,13 @@
-h2 {
-    font-size: 1.3em;
-    text-align: center;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-    text-decoration: none;
-    color: #000;
-}
-
-p {
-    color: #757A7B;
-    text-align: center;
-}
 
 .submit-btn {
+    padding: 5px;
     margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 .main {
@@ -22,74 +15,6 @@ p {
     min-height: 100vh;
 }
 
-.input {
-    padding: 0;
-}
-
-.logos {
-    width: 100px;
-    margin: 20px;
-}
-
-.title img {
-    width: 50px;
-    opacity: 0.5;
-}
-
-.title .greenflow {
-    animation: greenmove 3s infinite ease-in;
-}
-
-.title .pinkflow {
-    animation: pinkmove 3s infinite ease-in;
-}
-
-.title .beigeflow {
-    animation: beigemove 3s infinite ease-in;
-}
-
-@keyframes beigemove {
-    0% {
-        transform: translate3d(0, -60px, 1px);
-
-    }
-
-    50% {
-        transform: translate3d(50px, 0, 0px);
-    }
-
-    100% {
-        transform: translate3d(0, -60px, 1px);
-    }
-}
-
-
-@keyframes pinkmove {
-    0% {
-        transform: translateX(50vw);
-    }
-
-    50% {
-        transform: translateX(0vw);
-    }
-
-    100% {
-        transform: translateX(50vw);
-    }
-}
-
-@keyframes greenmove {
-
-    0% {
-        -webkit-transform: translatex(0);
-    }
-
-
-    50% {
-        -webkit-transform: translatex(70vw);
-    }
-
-    100% {
-        -webkit-transform: translatex(0);
-    }
-}
+/* .form-control {
+    border: 1px solid black;
+} */
