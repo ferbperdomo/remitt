@@ -1,11 +1,20 @@
 import countries from '../../countries.json'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Container, Form, FormControl, Button } from 'react-bootstrap'
 
 const CountriesPage = () => {
     const [input, setInput] = useState({ country: '' })
     const [sourceCountry, setSourceCountry] = useState()
     const [targetCountry, setTargetCountry] = useState()
+
+
+    useEffect(() => {
+        countries?.map(country => {
+            if (input.country === country.name) {
+                setSourceCountry(country)
+            }
+        })
+    }, [input.country])
 
 
     const handleInput = e => {
@@ -20,21 +29,11 @@ const CountriesPage = () => {
     }
 
     const oneCall = () => {
-        const country = countries.filter(country => country.name.esp === input.country || country.name.eng === input.country)
+        const country = countries.filter(country => country.name === input.country)
         setSourceCountry(country)
         console.log('pais', country)
         console.log('input', input)
-        // const remitent = countries.filter(country => country.name === input)
-        // setSourceCountry(remitent)
-        // console.log('pais que busco', remitent)
-        // console.log('input', input)
     }
-
-    // const target = countries.filter(country => country.name === input)
-    // console.log('target', target)
-    // console.log('pais que encuentro', sourceCountry)
-
-
 
 
 
@@ -56,7 +55,7 @@ const CountriesPage = () => {
                     onChange={handleInput}
                 />
                 <br />
-
+                
                 <FormControl
 
                     id="targetcountry"

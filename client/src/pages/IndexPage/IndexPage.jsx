@@ -22,7 +22,6 @@ const IndexPage = () => {
     const [sourceCountry, setSourceCountry] = useState()
     const [targetCountry, setTargetCountry] = useState()
     const { sourceCurrency, targetCurrency, sendAmount } = input
-    console.log('currencies ', currencies)
 
     const handleInput = e => {
         const { name, value } = e.target
@@ -36,22 +35,25 @@ const IndexPage = () => {
 
     const oneCall = () => {
 
-        const sendCountry = countries.find(country => country.name === sourceCurrency)
-        setSourceCountry(sendCountry.currency.code)
+        const sendCountry = countries.find(country => country.name.eng === sourceCurrency || country.name.esp === sourceCurrency)
+        setSourceCountry(sendCountry)
 
-        const receiveCountry = countries.find(country => country.name === targetCurrency)
-        setTargetCountry(receiveCountry.currency.code)
+        const receiveCountry = countries.find(country => country.name.eng === targetCurrency || country.name.esp === targetCurrency)
+        setTargetCountry(receiveCountry)
 
         apiService
             .getInput(sendCountry.currency.code, receiveCountry.currency.code, sendAmount)
             .then(({ data }) => {
                 setSource(data.providers)
                 setCurrencies(data)
-                console.log('data', data)
             })
             .catch(err => console.log(err))
+
     }
 
+    // const handleClick = () => {
+    //     setInput({ sourceCountry: '', targetCountry: '', sendAmount: '' })
+    // }
 
 
     return (
@@ -60,9 +62,9 @@ const IndexPage = () => {
             <Container className='main'>
                 <article className='title' >
                     <h1>Envío de dinero al exterior</h1>
-                    <img className='greenflow' src={greenflow} alt="testing color" />
-                    <img className='pinkflow' src={pinkflow} alt="testing color" />
-                    <img className='beigeflow' src={beigeflow} alt="testing color" />
+                    <img className='greenflow' src={greenflow} alt="green ball floating" />
+                    <img className='pinkflow' src={pinkflow} alt="pink ball floating" />
+                    <img className='beigeflow' src={beigeflow} alt="beige ball floating" />
                 </article>
                 <hr />
                 <Container className="input mb-5">
@@ -79,7 +81,7 @@ const IndexPage = () => {
                             placeholder="País remitente"
                             name='sourceCurrency'
                             aria-label="Search"
-                            value={sourceCountry}
+                            value={sourceCountry?.currency.code}
                             onChange={handleInput}
                         />
                         <br />
@@ -89,7 +91,7 @@ const IndexPage = () => {
                             placeholder="País destinatario"
                             name='targetCurrency'
                             aria-label="Search"
-                            value={targetCountry}
+                            value={targetCountry?.currency.code}
                             onChange={handleInput}
                         />
                         <br />
@@ -102,8 +104,13 @@ const IndexPage = () => {
                             onChange={handleInput}
                         />
                         <br />
-                        <Button variant="light" type="submit">
+                        <Button variant="light" className='submit-btn' type="submit">
                             Submit
+                        </Button>
+                        <Button variant="light" type="submit">
+                            <a href="/">
+                                Reset
+                            </a>
                         </Button>
                     </Form>
 
@@ -120,28 +127,31 @@ const IndexPage = () => {
                             <h2>Entre las distintas opciones que encontramos, te ofrecemos estas:</h2>
                             {
                                 source?.map(provider => {
+
                                     const { logos, quotes } = provider
 
-                                    return <>
-                                        <Row className="justify-content-center text-center">
+                                    return (
+                                        <>
+                                            <Row className="justify-content-center text-center" >
 
-                                            <Col >
-                                                {
-                                                    theme === 'light' ?
-                                                        <img className='logos' src={logos.normal.pngUrl} />
-                                                        :
-                                                        <img className='logos' src={logos.white.pngUrl} />
-                                                }
-                                                <p>comisión: {quotes[0].fee} {currencies?.sourceCurrency}</p>
-                                            </Col>
-                                            <Col className='mt-3' >
-                                                <p>tipo de cambio: {quotes[0].rate} {currencies?.sourceCurrency} </p>
-                                                <p>cantidad recibida: {quotes[0].receivedAmount} {currencies?.targetCurrency}</p>
-                                            </Col>
-                                        </Row>
+                                                <Col key={provider.id} >
+                                                    {
+                                                        theme === 'light' ?
+                                                            <img className='logos' alt='bank logo' src={logos.normal.pngUrl} />
+                                                            :
+                                                            <img className='logos' alt='bank logo' src={logos.white.pngUrl} />
+                                                    }
+                                                    <p>comisión: {quotes[0].fee} {currencies?.sourceCurrency}</p>
+                                                </Col>
+                                                <Col className='mt-3' >
+                                                    <p>tipo de cambio: {quotes[0].rate} {currencies?.sourceCurrency} </p>
+                                                    <p>cantidad recibida: {quotes[0].receivedAmount} {currencies?.targetCurrency}</p>
+                                                </Col>
+                                            </Row>
 
-                                        <hr />
-                                    </>
+                                            <hr />
+                                        </>
+                                    )
                                 })
                             }
                             <p>De momento solo tenemos estas opciones</p>
