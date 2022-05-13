@@ -52,63 +52,74 @@ const IndexPage = () => {
 
         <div className={theme}>
             <div className='main'>
-                <article className='title text-5xl' >
-                    <h1>Envío de dinero al exterior</h1>
-                </article>
-                <hr />
                 <div className="input mb-5">
-                    <div >
-                        <button className="theme-btn pull-right" size='sm' variant='outline-light' onClick={toggleTheme}>
+                    {/* <div >
+                        <button className="theme-btn pull-right" size='sm' onClick={toggleTheme}>
                             {theme === 'light' ? '🌜' : '🌞'}
                         </button>
 
+                    </div> */}
+
+                    <div className="container px-5 py-15 mx-auto flex">
+                        <div className="lg:w-1/3 md:w-1/2 bg-white rounded-lg p-8 flex flex-col  w-full mt-10 md:mt-0 relative z-10 shadow-lg">
+                            <form className="w-full max-w-sm" onSubmit={handleSubmit}>
+                                {/* <div className="md:flex md:items-center mb-6"> */}
+
+                                {/* <div className="md:flex md:items-center">
+                                    <div className="md:w-1/3"></div>
+                                    <div className="md:w-2/3">
+                                        <button className="shadow mr-7 bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                                            type="submit">
+                                            Buscar
+                                        </button>
+                                        <button className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+                                            <a href="/">
+
+                                                Reiniciar
+                                            </a>
+                                        </button>
+                                    </div>
+                                </div> */}
+
+                                <div className="relative mb-4">
+                                    <label className="leading-7 text-sm text-gray-600">País origen</label>
+                                    <input
+                                        id="sourcecountry"
+                                        type="search"
+                                        name='sourceCurrency'
+                                        aria-label="Search"
+                                        value={sourceCountry?.currency.code}
+                                        onChange={handleInput}
+                                        className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                </div>
+                                <div className="relative mb-4">
+                                    <label className="leading-7 text-sm text-gray-600">País destino</label>
+                                    <input
+                                        id="targetCurrency"
+                                        type="search"
+                                        name='targetCurrency'
+                                        aria-label="Search"
+                                        value={targetCountry?.currency.code}
+                                        onChange={handleInput}
+                                        className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                </div>
+                                <div className="relative mb-4">
+                                    <label className="leading-7 text-sm text-gray-600">Cantidad a enviar</label>
+                                    <input
+                                        id="sendAmount"
+                                        type="number"
+                                        name='sendAmount'
+                                        value={sendAmount}
+                                        onChange={handleInput}
+                                        className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                </div>
+
+                                <button type='submit' className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Compara</button>
+                                <p className="text-xs text-gray-500 mt-3">Buscaremos las mejores opciones para ti.</p>
+                            </form>
+                        </div>
+
                     </div>
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            className='form-control'
-                            id="sourcecountry"
-                            type="search"
-                            placeholder="País remitente"
-                            name='sourceCurrency'
-                            aria-label="Search"
-                            value={sourceCountry?.currency.code}
-                            onChange={handleInput}
-                        />
-                        <br />
-                        <input
-                            className='form-control'
-
-                            id="targetCurrency"
-                            type="search"
-                            placeholder="País destinatario"
-                            name='targetCurrency'
-                            aria-label="Search"
-                            value={targetCountry?.currency.code}
-                            onChange={handleInput}
-                        />
-                        <br />
-                        <input
-                            className='form-control'
-
-                            id="sendAmount"
-                            type="number"
-                            placeholder="Cantidad a enviar"
-                            name='sendAmount'
-                            value={sendAmount}
-                            onChange={handleInput}
-                        />
-                        <br />
-                        <button className='submit-btn' type="submit">
-                            Submit
-                        </button>
-                        <button className='submit-btn' type="submit">
-                            <a href="/">
-                                Reset
-                            </a>
-                        </button>
-                    </form>
-
-
                 </div >
                 {
 
@@ -153,7 +164,7 @@ const IndexPage = () => {
                 }
             </div>
 
-        </div>
+        </div >
 
     )
 

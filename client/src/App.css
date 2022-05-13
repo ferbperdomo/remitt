@@ -1,18 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 body {
-  font-family: -apple-system,
-    system-ui,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    "Roboto",
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
+  background-color: #1f2937;
 }
-
 
 .theme-btn {
   padding: 2px 15px;
@@ -23,9 +11,6 @@ body {
   box-shadow: none;
 }
 
-/* .theme-btn:hover {
-  background-color: #EFE7DD !important;
-} */
 
 .btn-light {
   background-color: white;
@@ -42,9 +27,9 @@ body {
   color: white;
 }
 
-.light {
+/* .light {
   background-color: white;
-}
+} */
 
 .dark {
   background-color: black;
