@@ -97,7 +97,9 @@ const IndexPage = () => {
                                             className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                                     </div>
 
-                                    <button type='submit' className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Compara</button>
+                                    <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                        Compara
+                                    </button>
                                     <p className="text-xs text-gray-500 mt-3">Buscaremos las mejores opciones para ti.</p>
                                 </form>
                             </div>
@@ -123,7 +125,7 @@ const IndexPage = () => {
 
                         !source ?
 
-                            <p>Por favor introduce lo datos</p>
+                            <br />
 
                             :
                             <>
