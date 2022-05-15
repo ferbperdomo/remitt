@@ -5,7 +5,7 @@ import countries from '../../countries.json'
 import { ThemeContext } from '../../context/theme.context'
 
 const IndexPage = () => {
-    const { theme, toggleTheme } = useContext(ThemeContext)
+    const { theme } = useContext(ThemeContext)
 
     const [input, setInput] = useState({
         sourceCurrency: "",
@@ -140,7 +140,7 @@ const IndexPage = () => {
                                                 <section className="text-gray-600 body-font relative">
 
 
-                                                    <div className="container px-5 py-24 mx-auto flex">
+                                                    <div className="container px-5 py-5 lg:py-10 mx-auto flex">
 
                                                         <div className=" bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
                                                             <div className="xl:w-1/3 md:w-1/2 p-4" key={provider.id}>
@@ -159,8 +159,6 @@ const IndexPage = () => {
                                                         </div>
                                                     </div>
                                                 </section>
-                                                <hr />
-
                                             </>
                                         )
                                     })
