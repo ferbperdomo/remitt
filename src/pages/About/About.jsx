@@ -73,15 +73,19 @@ export default function About() {
                         </p>
                     </div>
                     <div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+                        <div className="flex justify-evenly items-center">
                             {teamMembers.map((member) => (
-                                <div key={member.name} className="relative">
-                                    <div className="items-center justify-center">
-                                        <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                                            <img src={member.image} alt={member.name} className="h-6 w-6" />
+                                <div key={member.name}>
+                                    <div className="flex-col flex justify-evenly items-center">
+                                        <div className='m-auto py-3'>
+                                            <img
+                                                className="w-20 h-20 rounded-full"
+                                                src={member.image}
+                                                alt={member.name}
+                                            />
                                         </div>
-                                        <p className="ml-16 text-lg leading-6 font-medium text-gray-300">{member.name}</p>
-                                        <p className="ml-16 text-base text-gray-400">{member.title}</p>
+                                        <p className="text-lg leading-6 font-medium text-gray-300 py-3">{member.name}</p>
+                                        <p className="text-base text-gray-400">{member.title}</p>
                                     </div>
                                 </div>
                             ))}
