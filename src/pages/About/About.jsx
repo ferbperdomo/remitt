@@ -67,7 +67,7 @@ export default function About() {
                         <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
                             Who we are
                         </p>
-                        <p className="my-6 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                        <p className="my-6 max-w-2xl text-xl text-gray-300 lg:mx-auto">
                             Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in
                             accusamus quisquam.
                         </p>
@@ -76,12 +76,12 @@ export default function About() {
                         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-8 md:gap-y-10">
                             {teamMembers.map((member) => (
                                 <div key={member.name} className="relative">
-                                    <div className="flex-1">
+                                    <div className="items-center justify-center">
                                         <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
                                             <img src={member.image} alt={member.name} className="h-6 w-6" />
                                         </div>
-                                        <p className="ml-16 text-lg leading-6 font-medium text-gray-900">{member.name}</p>
-                                        <p className="ml-16 text-base text-gray-500">{member.title}</p>
+                                        <p className="ml-16 text-lg leading-6 font-medium text-gray-300">{member.name}</p>
+                                        <p className="ml-16 text-base text-gray-400">{member.title}</p>
                                     </div>
                                 </div>
                             ))}
@@ -96,13 +96,13 @@ export default function About() {
 
 const teamMembers = [
     {
-        name: 'John Doe',
-        title: 'CEO',
+        name: 'Cristian Perdomo',
+        title: 'Fullstack Developer',
         image: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
     },
     {
-        name: 'Jane Doe',
-        title: 'CFO',
+        name: 'Mikel Vallejo',
+        title: 'Growth Engineer',
         image: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
     },
 ]
