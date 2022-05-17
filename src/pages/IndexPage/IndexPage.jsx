@@ -50,7 +50,7 @@ const IndexPage = () => {
                 <div className="container mx-auto flex py-24 md:flex-row flex-col items-center">
                     <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
                         <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Buscamos los envios internacionales más favorables por ti.</h1>
-                        <p className="inline-block title-font sm:text-xl text-2xl mb-4 font-medium text-white" >Encuentra el precio justo en unos clicks. </p>
+                        <p className="inline-block title-font sm:text-xl text-2xl mb-4 font-medium text-white" >Encuentra un mejor precio en pocos clicks. </p>
                         <p className="mb-8 leading-relaxed">Aquí podrás comparar entre las distintas opciones para el envío de remesas y elegir la opción que más te convenga.</p>
                     </div>
                     <div className="lg:max-w-lg lg:w-full md:w-1/2 ">
