@@ -1,22 +1,18 @@
 import apiService from '../../services/api.service'
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import '../IndexPage/indexPage.css'
 import countries from '../../countries.json'
-import { ThemeContext } from '../../context/theme.context'
+import Select from 'react-select'
 
 const IndexPage = () => {
-    const { theme } = useContext(ThemeContext)
 
     const [input, setInput] = useState({
         sourceCurrency: "",
         targetCurrency: "",
-        sendAmount: ''
+        sendAmount: '100'
     })
 
     const [source, setSource] = useState()
-    const [currencies, setCurrencies] = useState()
-    const [sourceCountry, setSourceCountry] = useState()
-    const [targetCountry, setTargetCountry] = useState()
     const { sourceCurrency, targetCurrency, sendAmount } = input
 
     const handleInput = e => {
@@ -29,28 +25,26 @@ const IndexPage = () => {
         oneCall()
     }
 
+    const sendingOptions = countries.map(country => ({
+        value: country.currency.code,
+        label: country.name.esp,
+        flag: `data:image/png;base64,${country.flag}`
+
+    }))
+
     const oneCall = () => {
 
-        const sendCountry = countries.find(country => country.name.eng === sourceCurrency || country.name.esp === sourceCurrency)
-        setSourceCountry(sendCountry)
-
-        const receiveCountry = countries.find(country => country.name.eng === targetCurrency || country.name.esp === targetCurrency)
-        setTargetCountry(receiveCountry)
-
         apiService
-            .getInput(sendCountry.currency.code, receiveCountry.currency.code, sendAmount)
+            .getInput(sourceCurrency, targetCurrency, sendAmount)
             .then(({ data }) => {
                 setSource(data.providers)
-                setCurrencies(data)
             })
             .catch(err => console.log(err))
 
     }
 
-
     return (
 
-        // <div className={theme}>
         <div className='main'>
             <section className="text-gray-400 body-font">
                 <div className="container mx-auto flex py-24 md:flex-row flex-col items-center">
@@ -66,26 +60,30 @@ const IndexPage = () => {
 
                                     <div className="relative mb-4">
                                         <label className="leading-7 text-sm text-gray-600">País origen</label>
-                                        <input
+                                        <Select
                                             id="sourcecountry"
-                                            type="search"
+                                            options={sendingOptions}
+                                            key={sendingOptions.label}
+                                            onChange={e => setInput({ ...input, sourceCurrency: e.value })}
+                                            placeholder="Selecciona el país origen"
                                             name='sourceCurrency'
-                                            aria-label="Search"
-                                            value={sourceCountry?.currency.code}
-                                            onChange={handleInput}
-                                            className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                            className='bg-white  focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 leading-6 transition-colors duration-200 ease-in-out'
+                                        />
                                     </div>
+
                                     <div className="relative mb-4">
                                         <label className="leading-7 text-sm text-gray-600">País destino</label>
-                                        <input
+                                        <Select
                                             id="targetCurrency"
-                                            type="search"
+                                            options={sendingOptions}
+                                            key={sendingOptions.label}
+                                            onChange={e => setInput({ ...input, targetCurrency: e.value })}
+                                            placeholder="Selecciona el país destino"
                                             name='targetCurrency'
-                                            aria-label="Search"
-                                            value={targetCountry?.currency.code}
-                                            onChange={handleInput}
-                                            className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                            className='bg-white  focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 leading-6 transition-colors duration-200 ease-in-out'
+                                        />
                                     </div>
+
                                     <div className="relative mb-4">
                                         <label className="leading-7 text-sm text-gray-600">Cantidad a enviar</label>
                                         <input
@@ -94,10 +92,10 @@ const IndexPage = () => {
                                             name='sendAmount'
                                             value={sendAmount}
                                             onChange={handleInput}
-                                            className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                            className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 pl-2 leading-8 transition-colors duration-200 ease-in-out" />
                                     </div>
 
-                                    <button type="submit" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                    <button type="submit" className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                                         Compara
                                     </button>
                                     <p className="text-xs text-gray-500 mt-3">Buscaremos las mejores opciones para ti.</p>
@@ -107,73 +105,69 @@ const IndexPage = () => {
                         </div>
                     </div>
 
-                </div>
-            </section>
-            {/* <div className="mb-5">
-                <div >
-                        <button className="theme-btn pull-right" size='sm' onClick={toggleTheme}>
-                            {theme === 'light' ? '🌜' : '🌞'}
-                        </button>
+                </div >
 
-                    </div>
+            </section >
 
-
-            </div > */}
             <section className="text-gray-400 body-font">
-                <div className="container">
-                    {
-
-                        !source ?
-
-                            <br />
-
+                <div className="container w-full lg:w-10/12 lg:mx-16">
+                    {/* {
+                        sourceCurrency === '' && targetCurrency === '' ?
+                            <div className="flex flex-col text-center w-full mb-10">
+                                <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Búsqueda vacía</h1>
+                                <p className="mb-8 leading-relaxed">Por favor, selecciona los paises.</p>
+                            </div>
                             :
-                            <>
-                                <h2>Entre las distintas opciones que encontramos, te ofrecemos estas:</h2>
+                            <br />
+                    } */}
 
+                    {
+                        source === 0 ?
+                            <div className="flex flex-col text-center w-full mb-10">
+                                <div className="flex flex-col text-center w-full mb-10">
+                                    <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">No hay opciones disponibles</h1>
+                                    <p className="mb-8 leading-relaxed" >Por favor, elige otro país.</p>
+                                </div>
+                            </div>
+                            :
 
-                                {
-                                    source?.map(provider => {
+                            source?.map(provider => {
 
-                                        const { logos, quotes } = provider
+                                const { logos, quotes } = provider
 
-                                        return (
-                                            <>
-                                                <section className="text-gray-600 body-font relative">
+                                return (
+                                    <>
 
+                                        <section className="text-gray-600 body-font relative">
 
-                                                    <div className="container px-5 py-5 lg:py-10 mx-auto flex">
+                                            <div className="container px-5 py-5 lg:py-10 mx-auto flex">
 
-                                                        <div className=" bg-white rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-md">
-                                                            <div className="xl:w-1/3 md:w-1/2 p-4" key={provider.id}>
-                                                                <div className="w-40 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-2">
-                                                                    {
-                                                                        theme === 'light' ?
-                                                                            <img className="w-20 h-6" viewBox="0 0 24 24" alt='bank logo' src={logos.normal.pngUrl} />
-                                                                            :
-                                                                            <img className="w-20 h-6" viewBox="0 0 24 24" alt='bank logo' src={logos.white.pngUrl} />
-                                                                    }
-                                                                </div>
-                                                            </div>
-                                                            <p className="text-xs text-gray-500 mt-3">comisión: {quotes[0].fee} {currencies?.sourceCurrency}</p>
-                                                            <p className="text-xs text-gray-500 mt-3">tipo de cambio: {quotes[0]?.rate.toFixed(2)} {currencies?.sourceCurrency} </p>
-                                                            <p className="text-xs text-gray-500 mt-3">cantidad recibida: {quotes[0]?.receivedAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {currencies?.targetCurrency} </p>
+                                                <div className=" bg-white rounded-lg p-8 flex flex-col md:flex-row w-full mt-10 md:mt-0 relative z-10 shadow-md">
+                                                    <div className="xl:w-1/3 md:w-1/2 p-4" key={provider.id}>
+                                                        <div className="w-40 md:w-1/2 h-10 py-2.5 px-5 inline-flex items-center justify-center text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm  text-center">
+                                                            <img className="w-10/12 " viewBox="0 0 24 24" alt='bank logo' src={logos.white.pngUrl} />
                                                         </div>
                                                     </div>
-                                                </section>
-                                            </>
-                                        )
-                                    })
-                                }
-                                <p>De momento solo tenemos estas opciones</p>
-                            </>
+                                                    <div className="flex flex-col w-full md:w-1/2">
+                                                        <p className="text-sm text-gray-500 mt-3">Comisión: {quotes[0].fee} {sourceCurrency}</p>
+                                                        <p className="text-sm text-gray-500 mt-3">Tipo de cambio: {quotes[0]?.rate.toFixed(2)} {sourceCurrency} </p>
+                                                        <p className="text-sm text-gray-500 mt-3">Cantidad recibida: {quotes[0]?.receivedAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {targetCurrency} </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </>
+                                )
+                            })
+
                     }
+
+
                 </div>
             </section>
 
-        </div>
+        </div >
 
-        // </div >
 
     )
 
