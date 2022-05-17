@@ -110,7 +110,7 @@ const IndexPage = () => {
             </section >
 
             <section className="text-gray-400 body-font">
-                <div className="container w-full lg:w-10/12 lg:mx-16">
+                <div className="w-full">
                     {/* {
                         sourceCurrency === '' && targetCurrency === '' ?
                             <div className="flex flex-col text-center w-full mb-10">
@@ -140,7 +140,7 @@ const IndexPage = () => {
 
                                         <section className="text-gray-600 body-font relative">
 
-                                            <div className="container px-5 py-5 lg:py-10 mx-auto flex">
+                                            <div className="container px-0 py-5 lg:py-10 mx-auto flex">
 
                                                 <div className=" bg-white rounded-lg p-8 flex flex-col md:flex-row w-full mt-10 md:mt-0 relative z-10 shadow-md">
                                                     <div className="xl:w-1/3 md:w-1/2 p-4" key={provider.id}>
