@@ -2,6 +2,7 @@ import { Disclosure } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import './navigation.css'
+import logo from './../img/logo.svg'
 
 const navigation = [
     { name: 'Compara', href: '/', current: true },
@@ -36,7 +37,8 @@ export default function Example() {
                                 <div className="flex-shrink-0 flex items-center">
                                     <img
                                         className="block  h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                                        // src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                                        src={logo}
                                         alt="Workflow"
                                     />
                                 </div>
