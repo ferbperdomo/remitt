@@ -37,6 +37,7 @@ const IndexPage = () => {
             .getInput(sourceCurrency, targetCurrency, sendAmount)
             .then(({ data }) => {
                 setSource(data.providers)
+                console.log(data.providers)
             })
             .catch(err => console.log(err))
 
