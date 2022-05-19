@@ -143,9 +143,9 @@ const IndexPage = () => {
 
                                             <div className="container py-5 lg:py-10 mx-auto flex ">
 
-                                                <div className="bg-white rounded-lg p-8 flex flex-col md:flex-row w-full ">
+                                                <div className="bg-white rounded-lg p-8 flex flex-col md:flex-row w-full lg:w-10/12 lg:m-auto">
 
-                                                    <div className="flex mt-3 place-content-between align-middle md:flex-col md:mx-12" >
+                                                    <div className="flex mt-3 place-content-between align-middle md:flex-col md:mx-12 lg:mx-7" >
                                                         <div >
                                                             <img className="w-28 max-h-14 object-cover lg:w-60" viewBox="0 0 24 24" alt='bank logo' src={logos.normal.svgUrl} />
                                                         </div>
