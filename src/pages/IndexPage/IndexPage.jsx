@@ -11,7 +11,6 @@ const IndexPage = () => {
         targetCurrency: "",
         sendAmount: '100'
     })
-
     const [source, setSource] = useState()
     const { sourceCurrency, targetCurrency, sendAmount } = input
 
@@ -37,7 +36,6 @@ const IndexPage = () => {
             .getInput(sourceCurrency, targetCurrency, sendAmount)
             .then(({ data }) => {
                 setSource(data.providers)
-                console.log(data.providers)
             })
             .catch(err => console.log(err))
 
@@ -145,31 +143,33 @@ const IndexPage = () => {
 
                                             <div className="container py-5 lg:py-10 mx-auto flex ">
 
-                                                <div className="bg-white rounded-lg p-8 flex flex-col md:flex-row md:justify-around w-full ">
+                                                <div className="bg-white rounded-lg p-8 flex flex-col md:flex-row w-full ">
 
-                                                    <div className="flex mt-3 place-content-between align-middle md:flex-col md:mx-12 " >
+                                                    <div className="flex mt-3 place-content-between align-middle md:flex-col md:mx-12" >
                                                         <div >
-                                                            <img className="w-28 max-h-14 object-cover " viewBox="0 0 24 24" alt='bank logo' src={logos.normal.svgUrl} />
+                                                            <img className="w-28 max-h-14 object-cover lg:w-60" viewBox="0 0 24 24" alt='bank logo' src={logos.normal.svgUrl} />
                                                         </div>
-                                                        <div className='px-4 py-2 my-1 text-xs md:my-3 leading-none text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"'>
+                                                        <div className='px-4 py-2 my-1 text-xs md:my-3 lg:mx-7 leading-none text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"'>
                                                             <p >Comisión: </p>
                                                             <p >{quotes[0].fee} {sourceCurrency}</p>
                                                         </div>
                                                     </div>
 
-                                                    <div className="flex flex-col w-full md:text-center ">
-                                                        <div>
-                                                            <p className="text-sm text-gray-500 mt-3">Tú envías: {sendAmount} {sourceCurrency}</p>
+                                                    <div className="flex flex-col w-full text-sm text-gray-500 md:items-center md:text-base lg:flex-row lg:justify-evenly lg:text-xl">
+                                                        <div className=' flex flex-row lg:flex-col'>
+                                                            <p className="mt-3">Tú envías:&nbsp; </p>
+                                                            <p className="mt-3 lg:mt-0"> {sendAmount} {sourceCurrency}</p>
                                                         </div>
-                                                        <div>
-                                                            <p className="text-sm text-gray-500 mt-3">Allí reciben: {quotes[0]?.receivedAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} {targetCurrency} </p>
+                                                        <div className=' flex flex-row lg:flex-col'>
+                                                            <p className="mt-3">Allí reciben:&nbsp; </p>
+                                                            <p className="mt-3 lg:mt-0"> {quotes[0]?.receivedAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} {targetCurrency} </p>
                                                         </div>
                                                     </div>
 
-                                                    <div className='mt-6 md:mx-12 md:mt-3'>
-                                                        <button type="button" className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex">
+                                                    <div className='mt-6 md:mx-12 md:mt-3 lg:mx-7'>
+                                                        <button type="button" className="rounded-lg text-sm lg:text-lg px-5 py-2.5 text-center flex text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 ">
                                                             Enviar dinero
-                                                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                                            <svg className="w-5 h-5 lg:w-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                                         </button>
                                                     </div>
                                                 </div>
