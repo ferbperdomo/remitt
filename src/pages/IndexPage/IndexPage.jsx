@@ -53,9 +53,9 @@ const IndexPage = () => {
 
         <div className='main'>
             <section className="text-gray-400 body-font">
-                <div className="container mx-auto flex py-24 md:flex-row flex-col items-center">
+                <div className="container mx-auto flex md:py-24 md:flex-row flex-col items-center">
 
-                    <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+                    <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left md:mb-0 items-center text-center">
                         <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Buscamos los envios internacionales más favorables por ti.</h1>
                         <p className="inline-block title-font sm:text-xl text-2xl mb-4 font-medium text-white" >Encuentra un mejor precio en pocos clicks. </p>
                         <p className="mb-8 leading-relaxed">Aquí podrás comparar entre las distintas opciones para el envío de remesas y elegir la opción que más te convenga.</p>
@@ -63,7 +63,7 @@ const IndexPage = () => {
 
                     <div className="lg:max-w-lg lg:w-full md:w-1/2 ">
                         <div className="container mx-auto ">
-                            <div className="w-full bg-white rounded-lg p-8 flex flex-col mt-10 md:mt-0 relative z-10 shadow-lg">
+                            <div className="w-full bg-white rounded-lg p-8 flex flex-col mt-2 mb-4 md:mb-0 md:mt-0 relative z-10 shadow-lg">
                                 <form className="w-full" onSubmit={handleSubmit}>
 
                                     <div className="relative mb-4">
@@ -150,7 +150,7 @@ const IndexPage = () => {
                                 return (
                                     <>
 
-                                        <section className="text-gray-600 body-font relative">
+                                        <section className=" body-font relative">
 
                                             <div className="container py-5 lg:py-10 mx-auto flex ">
 
@@ -166,7 +166,7 @@ const IndexPage = () => {
                                                         </div>
                                                     </div>
 
-                                                    <div className="flex flex-col w-full text-sm text-gray-500 md:items-center md:text-base lg:flex-row lg:justify-evenly lg:text-xl">
+                                                    <div className="flex flex-col w-full text-sm text-black md:items-center md:text-base lg:flex-row lg:justify-evenly lg:text-xl">
                                                         <div className=' flex flex-row lg:flex-col'>
                                                             <p className="mt-3">Tú envías:&nbsp; </p>
                                                             <p className="mt-3 lg:mt-0"> {sendAmount} {sourceCurrency}</p>
