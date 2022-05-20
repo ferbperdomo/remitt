@@ -1,45 +1,60 @@
 import { AnnotationIcon, GlobeAltIcon, LightningBoltIcon, ScaleIcon } from '@heroicons/react/outline'
 
-
 const features = [
     {
-        name: 'Remmitances all around the world',
+        name: 'Envío de remesas a todo el mundo',
         description:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+            'Sin importar el país de origen. No importa si es una persona física o una empresa. Aquí puedes consultar la mejor opción de envío para ti. ',
         icon: GlobeAltIcon,
     },
     {
-        name: 'Crystal clear',
+        name: 'Transparencia',
         description:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+            'Nuestros servicios son transparentes. No necesitas registrarte para poder realizar una consulta. Es tan fácil como una consulta en línea.',
         icon: ScaleIcon,
     },
     {
-        name: 'Real Time Exchange Rates',
+        name: 'Tasas de cambio a tiempo real',
         description:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+            'Las tasas de cambio son actualizadas a tiempo real. Así puedes saber con exactitud cuánto te costará enviar una remesa a otro país en ese instante.',
         icon: LightningBoltIcon,
     },
     {
-        name: 'Get notified on your Inbox',
+        name: 'Obtén alertas de envíos',
         description:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+            'Podrás recibir alertas cuando haya una variación en el precio de envío. No te preocupes, no te cobramos nada.',
         icon: AnnotationIcon,
     },
 ]
+const teamMembers = [
+    {
+        name: 'Cristian Perdomo',
+        title: 'Fullstack Developer',
+        image: 'https://media-exp1.licdn.com/dms/image/C4D03AQFRvhLfTkSJIA/profile-displayphoto-shrink_800_800/0/1647878416644?e=1658361600&v=beta&t=3Gq7pajDSPH9UkRM65gTPRRGS8hRZ6nTRO5DchHTl1g',
+        media: 'https://www.linkedin.com/in/ferbperdomo/'
+    },
+    {
+        name: 'Mikel Vallejo',
+        title: 'Growth Engineer',
+        image: 'https://media-exp1.licdn.com/dms/image/C4D03AQERv-M5fKmcvA/profile-displayphoto-shrink_800_800/0/1636979394064?e=1658361600&v=beta&t=ceAMJhpdrIXLl4JuaJEfkJNRWsdf8-gFDvIUBAT9c4s',
+        media: 'https://www.linkedin.com/in/mikelvallejo/'
+    },
+]
+
 export default function About() {
     return (
         <>
             <div className="mb-10 px-5 py-10 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-15">
                     <div className="lg:text-center">
-                        <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">About us</h2>
+                        <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">¿Por qué usar nuestros servicios?</h2>
                         <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                            Get more for the money you send
+                            Puedes obtener más por el dinero que envías.
                         </p>
                         <p className="my-6 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-                            Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in
-                            accusamus quisquam.
+                            Nuestros servicios son gratuitos y no te cobramos nada. Nos interesa que puedas usar nuestros servicios para mejorar tu vida.
+                            Escoge el país de origen y el destino de tu remesa y obtén la mejor opción de envío.
+
                         </p>
                     </div>
 
@@ -63,13 +78,13 @@ export default function About() {
             <div className="mb-10 px-5 py-10 bg-gray-800">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-15">
                     <div className="lg:text-center">
-                        <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Team</h2>
+                        <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">Equipo</h2>
                         <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                            Who we are
+                            ¿Quiénes somos?
                         </p>
                         <p className="my-6 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                            Lorem ipsum dolor sit amet consect adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in
-                            accusamus quisquam.
+                            Nos dedicamos a la creación de soluciones tecnológicas para la comunidad. Nuestra misión es ayudar a las personas a mejorar su vida.
+                            En esta ocasión te brindamos una herramienta que te ayudará a conseguir más por el dinero que envías.
                         </p>
                     </div>
                     <div>
@@ -84,7 +99,12 @@ export default function About() {
                                                 alt={member.name}
                                             />
                                         </div>
-                                        <p className="text-lg leading-6 font-medium text-gray-300 py-3">{member.name}</p>
+                                        <a
+                                            href={member.media}
+                                            target="_blank"
+                                        >
+                                            <p className="text-lg leading-6 font-medium text-gray-300 py-3">{member.name}</p>
+                                        </a>
                                         <p className="text-base text-gray-400">{member.title}</p>
                                     </div>
                                 </div>
@@ -98,17 +118,6 @@ export default function About() {
     )
 }
 
-const teamMembers = [
-    {
-        name: 'Cristian Perdomo',
-        title: 'Fullstack Developer',
-        image: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
-    },
-    {
-        name: 'Mikel Vallejo',
-        title: 'Growth Engineer',
-        image: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
-    },
-]
+
 
 

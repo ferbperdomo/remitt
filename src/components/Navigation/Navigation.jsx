@@ -2,7 +2,7 @@ import { Disclosure } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import './navigation.css'
-import logo from './../img/logo.svg'
+import logo from './../../img/logo.svg'
 
 const navigation = [
     { name: 'Compara', href: '/', current: false },

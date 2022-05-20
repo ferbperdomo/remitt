@@ -3,16 +3,18 @@ import { useState } from 'react'
 import '../IndexPage/indexPage.css'
 import countries from '../../countries.json'
 import Select from 'react-select'
+import { useToast } from '../../hooks/useToast'
 
 const IndexPage = () => {
 
     const [input, setInput] = useState({
         sourceCurrency: "",
         targetCurrency: "",
-        sendAmount: '100'
+        sendAmount: ''
     })
     const [source, setSource] = useState()
     const { sourceCurrency, targetCurrency, sendAmount } = input
+    const toast = useToast()
 
     const handleInput = e => {
         const { name, value } = e.target
@@ -21,6 +23,9 @@ const IndexPage = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
+        if (sourceCurrency === "" || targetCurrency === "" || sendAmount === "") {
+            toast('error', 'Please fill all the fields')
+        }
         oneCall()
     }
 
@@ -29,6 +34,9 @@ const IndexPage = () => {
         label: country.name.esp,
         flag: `data:image/png;base64,${country.flag}`,
     }))
+
+
+
 
     const oneCall = () => {
 
@@ -92,13 +100,14 @@ const IndexPage = () => {
                                             name='sendAmount'
                                             value={sendAmount}
                                             onChange={handleInput}
+
                                             className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 pl-2 leading-8 transition-colors duration-200 ease-in-out" />
                                     </div>
 
                                     <button type="submit" className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full">
                                         Buscar la mejor opción
                                     </button>
-                                    <p className="text-xs text-gray-500 mt-3">Buscaremos las mejores opciones para ti.</p>
+                                    <p className="text-xs text-gray-500 mt-3">Lo hacemos por ti.</p>
                                 </form>
                             </div>
 
@@ -111,15 +120,17 @@ const IndexPage = () => {
 
             <section className="text-gray-400 body-font">
                 <div className="w-full">
+
                     {/* {
-                        sourceCurrency === '' && targetCurrency === '' ?
+                        oneCall() && sourceCurrency === '' && targetCurrency === '' ?
                             <div className="flex flex-col text-center w-full mb-10">
                                 <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Búsqueda vacía</h1>
                                 <p className="mb-8 leading-relaxed">Por favor, selecciona los paises.</p>
                             </div>
                             :
-                            <br />
+                            null
                     } */}
+
 
                     {
                         source == 0 ?
@@ -169,7 +180,7 @@ const IndexPage = () => {
                                                     <div className='mt-6 md:mx-12 md:mt-3 lg:mx-7'>
                                                         <button type="button" className="rounded-lg text-sm lg:text-lg px-5 py-2.5 text-center flex text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 ">
                                                             Enviar dinero
-                                                            <svg className="w-5 h-5 lg:w-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                                            <svg className="w-5 h-5 lg:w-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                                                         </button>
                                                     </div>
                                                 </div>
