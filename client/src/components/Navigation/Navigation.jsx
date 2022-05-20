@@ -36,11 +36,16 @@ export default function Example() {
                             </div>
                             <div className="flex items-center px-4 justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex-shrink-0 flex items-start">
-                                    <img
-                                        className="h-8"
-                                        src={logo}
-                                        alt="Workflow"
-                                    />
+                                    <Link
+                                        to={'/'}
+                                    >
+                                        <img
+                                            className="h-8"
+                                            src={logo}
+                                            alt="Workflow"
+                                        />
+                                    </Link>
+
                                 </div>
                                 <div className="hidden sm:block sm:ml-6">
                                     <div className="flex space-x-4">

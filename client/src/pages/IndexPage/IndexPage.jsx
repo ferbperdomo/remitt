@@ -52,7 +52,7 @@ const IndexPage = () => {
 
     return (
 
-        <div className='main'>
+        <div className='main h-screen '>
             <section className="text-gray-400 body-font">
                 <div className="container mx-auto flex md:py-24 md:flex-row flex-col items-center">
 
