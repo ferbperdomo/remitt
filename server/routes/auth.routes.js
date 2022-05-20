@@ -5,7 +5,7 @@ const router = express.Router()
 
 
 router.post('/signup', (req, res, next) => {
-    
+
     const { email, name } = req.body
 
     if (email === '' || name === '') {
