@@ -7,7 +7,7 @@ import logo from './../../img/logo.svg'
 const navigation = [
     { name: 'Compara', href: '/', current: false },
     { name: 'Quienes somos', href: '/about', current: false },
-    { name: 'Crea una alerta', href: '/login', current: false },
+    { name: 'Crea una alerta', href: '/signup', current: false },
 ]
 
 function classNames(...classes) {
@@ -68,7 +68,7 @@ export default function Example() {
                             </div>
                             <label for="toggle" className="text-xs text-gray-700">Light mode</label> */}
                             <div className="absolute hidden md:inline-grid inset-y-0 left-0  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                <Link to={"/login"}>
+                                <Link to={"/signup"}>
                                     <button type="button" className=" text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                                         Crea una alerta
                                     </button>

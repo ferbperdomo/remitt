@@ -1,4 +1,31 @@
-export default function Login() {
+import React, { useState } from "react"
+import authService from '../../services/auth.service'
+
+const SignUpPage = () => {
+
+    const [signUpForm, setSignUpForm] = useState({
+        email: "",
+        name: "",
+    }
+    )
+    const { email, name } = signUpForm
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target
+        setSignUpForm({ ...signUpForm, [name]: value })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        authService
+            .signup({ ...signUpForm })
+            .then(() => console.log("signup successful")
+            )
+            .catch(err => console.log(err))
+
+    }
+
     return (
 
         <section className="text-gray-400 body-font">
@@ -11,34 +38,34 @@ export default function Login() {
                 <div className="lg:max-w-lg lg:w-full md:w-1/2 ">
                     <div className="container px-5 py-15 mx-auto flex">
                         <div className="md:w-full bg-white rounded-lg p-8 flex flex-col  w-full mt-10 md:mt-0 relative z-10 shadow-lg">
-                            <form className="w-full max-w-sm">
+                            <form className="w-full max-w-sm" onSubmit={handleSubmit}>
                                 <div className="relative mb-4">
                                     <label className="leading-7 text-sm text-gray-600">Nombre</label>
                                     <input
-                                        id="sourcecountry"
-                                        type="search"
-                                        name='sourceCurrency'
-                                        aria-label="Search"
+                                        type="text"
+                                        name='name'
+                                        value={name}
+                                        onChange={handleInputChange}
                                         className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                                 </div>
 
                                 <div className="relative mb-4">
                                     <label className="leading-7 text-sm text-gray-600">Email</label>
                                     <input
-                                        id="sourcecountry"
-                                        type="search"
-                                        name='sourceCurrency'
-                                        aria-label="Search"
+                                        type="email"
+                                        name='email'
+                                        value={email}
+                                        onChange={handleInputChange}
                                         className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                                 </div>
 
                                 <button type='submit' className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full">Avísame</button>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
         </section>
     )
 }
+export default SignUpPage
