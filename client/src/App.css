@@ -1,0 +1,49 @@
+body {
+  background-color: #1f2937;
+  color: #fff;
+}
+
+.theme-btn {
+  padding: 2px 15px;
+  background-color: transparent !important;
+  border: none;
+  font-size: 3em;
+  text-align: center;
+  box-shadow: none;
+}
+
+
+.btn-light {
+  background-color: white;
+  border: 1px solid #EFE7DD;
+}
+
+.btn-light:focus {
+  background-color: white;
+  box-shadow: none;
+}
+
+.btn-light:hover {
+  background-color: black;
+  color: white;
+}
+
+/* .light {
+  background-color: white;
+} */
+
+.dark {
+  background-color: black;
+}
+
+.light p,
+.light h1,
+.light h2 {
+  color: black;
+}
+
+.dark p,
+.dark h1,
+.dark h2 {
+  color: white;
+}
