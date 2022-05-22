@@ -68,7 +68,7 @@ const IndexPage = () => {
                                     <div className="relative mb-4">
                                         <label className="leading-7 text-sm text-gray-600">País origen</label>
                                         <Select
-                                            id="sourcecountry"
+                                            id="sourceCurrency"
                                             options={sendingOptions}
                                             key={sendingOptions.label}
                                             onChange={e => setInput({ ...input, sourceCurrency: e.value })}
