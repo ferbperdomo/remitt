@@ -10,7 +10,6 @@ function App() {
       <main>
         <AppRoutes />
       </main>
-      <Footer />
     </>
   )
 }
