@@ -42,5 +42,57 @@
     {
         "name": "OFX",
         "url": "https://www.ofx.com/en-us/"
+    },
+    {
+        "name": "WorldRemit",
+        "url": "https://www.worldremit.com/es/home"
+    },
+    {
+        "name": "ActivoBank",
+        "url": "https://www.activobank.com/"
+    },
+    {
+        "name": "Moneygram",
+        "url": "https://www.moneygram.com/mgo/es/es/"
+    },
+    {
+        "name": "Andrews Federal Credit Union",
+        "url": "https://www.andrewsfcu.org/Access/Online/Personal-Online-Banking/Transfer-Money"
+    },
+    {
+        "name": "Remitly",
+        "url": "https://www.remitly.com/es/es"
+    },
+    {
+        "name": "Sable Bank",
+        "url": "https://sablecard.com/"
+    },
+    {
+        "name": "Stanford Federal Credit Union",
+        "url": "https://www.sfcu.org/"
+    },
+    {
+        "name": "Chase (US)",
+        "url": "https://www.chase.com/"
+    },
+    {
+        "name": "Wells Fargo",
+        "url": "https://www.wellsfargo.com/es/"
+    },
+    {
+        "name": "Bank of America",
+        "url": "https://www.bankofamerica.com/es/"
+    },
+    {
+        "name": "Novo",
+        "url": "https://www.novo.co/"
+    }, 
+    {
+        "name": "OnJuno",
+        "url": "https://www.onjuno.com"
+    },
+    {
+        "name": "Zolve",
+        "url": "https://zolve.com/"
     }
 ]

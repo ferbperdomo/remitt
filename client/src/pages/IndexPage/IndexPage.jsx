@@ -145,17 +145,15 @@ const IndexPage = () => {
                             :
 
                             source?.map(provider => {
-
+                                console.log(provider)
                                 const { logos, quotes, name } = provider
                                 const handleClick = () => {
                                     if (providers.find(provider => provider.name === name)) {
                                         const url = providers.find(provider => provider.name === name).url
                                         window.open(url, '_blank')
 
-
                                     }
                                 }
-
 
                                 return (
                                     <>
