@@ -4,6 +4,7 @@ import '../IndexPage/indexPage.css'
 import countries from '../../countries.json'
 import Select from 'react-select'
 import { useToast } from '../../hooks/useToast'
+import providers from '../../providers.json'
 
 const IndexPage = () => {
 
@@ -36,19 +37,18 @@ const IndexPage = () => {
     }))
 
 
-
-
     const oneCall = () => {
 
         apiService
             .getInput(sourceCurrency, targetCurrency, sendAmount)
             .then(({ data }) => {
-                console.log(data)
                 setSource(data.providers)
             })
             .catch(err => console.log(err))
 
     }
+
+
 
     return (
 
@@ -146,7 +146,16 @@ const IndexPage = () => {
 
                             source?.map(provider => {
 
-                                const { logos, quotes } = provider
+                                const { logos, quotes, name } = provider
+                                const handleClick = () => {
+                                    if (providers.find(provider => provider.name === name)) {
+                                        const url = providers.find(provider => provider.name === name).url
+                                        window.open(url, '_blank')
+
+
+                                    }
+                                }
+
 
                                 return (
                                     <>
@@ -179,7 +188,7 @@ const IndexPage = () => {
                                                     </div>
 
                                                     <div className='mt-6 md:mx-12 md:mt-3 lg:mx-7'>
-                                                        <button type="button" className="rounded-lg text-sm lg:text-lg px-5 py-2.5 text-center flex text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 ">
+                                                        <button type="button" onClick={handleClick} className="rounded-lg text-sm lg:text-lg px-5 py-2.5 text-center flex text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 ">
                                                             Enviar dinero
                                                             <svg className="w-5 h-5 lg:w-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                                                         </button>

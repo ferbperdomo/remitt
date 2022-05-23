@@ -1,10 +1,46 @@
 [
     {
-        "provider_name": "Wise",
-        "provider_url": "https://wise.mit.edu/"
+        "name": "Wise",
+        "url": "https://wise.com/es/send-money/"
     },
     {
-        "provider_name": "BBVA",
-        "provider_url": "https://www.bbva.es/"
+        "name": "BBVA",
+        "url": "https://www.bbva.es/"
+    },
+    {
+        "name": "LaCaixa",
+        "url": "https://www.lacaixa.es/"
+    },
+    {
+        "name": "Western Union",
+        "url": "https://www.westernunion.com/es/es/home.html"
+    },
+    {
+        "name": "bunq",
+        "url": "https://es.bunq.com/"
+    },
+    {
+        "name": "N26",
+        "url": "https://n26.com/es-es"
+    },
+    {
+        "name": "Rabobank",
+        "url": "https://www.rabobank.com/en/home/index.html"
+    },
+    {
+        "name": "Sabadell",
+        "url": "https://www.grupbancsabadell.com/corp/es/inicio.html"
+    },
+    {
+        "name": "ABN AMRO Bank",
+        "url": "https://www.abnamro.com/en/home"
+    },
+    {
+        "name": "Xoom",
+        "url": "https://www.xoom.com/?locale=es-ES"
+    },
+    {
+        "name": "OFX",
+        "url": "https://www.ofx.com/en-us/"
     }
 ]
