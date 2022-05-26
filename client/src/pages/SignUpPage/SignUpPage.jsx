@@ -20,8 +20,11 @@ const SignUpPage = () => {
 
         authService
             .signup({ ...signUpForm })
-            .then(() => console.log("signup successful")
-            )
+            .then(() => {
+                console.log("signup successful")
+                return authService.send_email(email, name)
+            })
+            .then(() => { console.log("email sent") })
             .catch(err => console.log(err))
 
     }
@@ -38,7 +41,7 @@ const SignUpPage = () => {
                 <div className="lg:max-w-lg lg:w-full md:w-1/2 ">
                     <div className="container px-5 py-15 mx-auto flex">
                         <div className="md:w-full bg-white rounded-lg p-8 flex flex-col  w-full mt-10 md:mt-0 relative z-10 shadow-lg">
-                            <form className="w-full max-w-sm" onSubmit={handleSubmit}>
+                            <form className="w-full max-w-sm" onSubmit={handleSubmit} action="/email" method="POST">
                                 <div className="relative mb-4">
                                     <label className="leading-7 text-sm text-gray-600">Nombre</label>
                                     <input

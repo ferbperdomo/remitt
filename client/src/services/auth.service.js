@@ -23,6 +23,10 @@ class AuthService {
         return this.api.post('/signup', credentials)
     }
 
+    send_email(credentials) {
+        return this.api.post('/send_email', credentials)
+    }
+
 
 }
 

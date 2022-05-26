@@ -1,16 +1,18 @@
-require("dotenv/config");
+require("dotenv/config")
 
-require("./db");
+require("./db")
 
-const express = require("express");
+const express = require("express")
 
-const app = express();
+const app = express()
 
-require("./config")(app);
+require("./config")(app)
 
-const allRoutes = require("./routes/index.routes");
-app.use("/", allRoutes);
+const allRoutes = require("./routes/index.routes")
+app.use("/", allRoutes)
 
-require("./error-handling")(app);
+const nodemailer = require("nodemailer")
 
-module.exports = app;
+require("./error-handling")(app)
+
+module.exports = app
