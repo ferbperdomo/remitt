@@ -4,14 +4,11 @@ import './index.css'
 import App from './App'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { ThemeProviderWrapper } from './context/theme.context'
-import { ToastProvider } from './context/toast.context'
 
 ReactDOM.render(
   <Router>
     <ThemeProviderWrapper>
-      <ToastProvider>
-        <App />
-      </ToastProvider>
+      <App />
     </ThemeProviderWrapper>
   </Router>,
   document.getElementById('root')
