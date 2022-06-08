@@ -3,7 +3,6 @@ import { useState } from 'react'
 import '../IndexPage/indexPage.css'
 import countries from '../../countries.json'
 import Select from 'react-select'
-import { useToast } from '../../hooks/useToast'
 import providers from '../../providers.json'
 
 const IndexPage = () => {
@@ -15,7 +14,6 @@ const IndexPage = () => {
     })
     const [source, setSource] = useState()
     const { sourceCurrency, targetCurrency, sendAmount } = input
-    const toast = useToast()
 
     const handleInput = e => {
         const { name, value } = e.target
@@ -25,12 +23,13 @@ const IndexPage = () => {
     const handleSubmit = e => {
         e.preventDefault()
         if (sourceCurrency === "" || targetCurrency === "" || sendAmount === "") {
-            toast('error', 'Please fill all the fields')
+            console.log('error', 'Please fill all the fields')
         }
         oneCall()
     }
 
     const sendingOptions = countries.map(country => ({
+        key: country.id,
         value: country.currency.code,
         label: country.name.esp,
         flag: `data:image/png;base64,${country.flag}`,
@@ -122,17 +121,6 @@ const IndexPage = () => {
             <section className="text-gray-400 body-font">
                 <div className="w-full">
 
-                    {/* {
-                        oneCall() && sourceCurrency === '' && targetCurrency === '' ?
-                            <div className="flex flex-col text-center w-full mb-10">
-                                <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">Búsqueda vacía</h1>
-                                <p className="mb-8 leading-relaxed">Por favor, selecciona los paises.</p>
-                            </div>
-                            :
-                            null
-                    } */}
-
-
                     {
                         source == 0 ?
                             <div className="flex flex-col text-center w-full mb-10">
@@ -145,7 +133,8 @@ const IndexPage = () => {
                             :
 
                             source?.map(provider => {
-                                console.log(provider)
+                                
+
                                 const { logos, quotes, name } = provider
                                 const handleClick = () => {
                                     if (providers.find(provider => provider.name === name)) {

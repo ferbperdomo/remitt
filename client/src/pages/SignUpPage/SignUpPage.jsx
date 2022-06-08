@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import authService from '../../services/auth.service'
+import { useNavigate } from 'react-router-dom'
 
 const SignUpPage = () => {
 
@@ -9,6 +10,7 @@ const SignUpPage = () => {
     }
     )
     const { email, name } = signUpForm
+    const navigate = useNavigate()
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
@@ -21,10 +23,10 @@ const SignUpPage = () => {
         authService
             .signup({ ...signUpForm })
             .then(() => {
-                console.log("signup successful")
-                return authService.send_email(email, name)
-            })
-            .then(() => { console.log("email sent") })
+                alert("Registro exitoso")
+                navigate('/')
+            }
+            )
             .catch(err => console.log(err))
 
     }
