@@ -34,11 +34,11 @@ router.post('/signup', (req, res, next) => {
 
             const user = { email, name, _id }
 
-            res.status(201).json({ user })
+            return res.status(201).json({ user })
         })
         .catch(err => {
             console.log(err)
-            res.status(500).json({ message: "Internal Server Error" })
+            return res.status(500).json({ message: "Internal Server Error" })
         })
 
 })
