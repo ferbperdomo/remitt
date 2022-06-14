@@ -18,6 +18,7 @@
     "react-select": "^5.3.2",
     "react-select-search": "^3.0.9",
     "react-toast-notifications": "^2.5.1",
+    "source-map-resolve": "^0.6.0",
     "tailwindcss-classnames": "^3.0.5",
     "web-vitals": "^2.1.4"
   },
