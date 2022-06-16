@@ -18,27 +18,30 @@ router.post('/signup', (req, res, next) => {
         return
     }
 
-    User
-        .findOne({ email })
-        .then((foundUser) => {
-            if (foundUser) {
-                res.status(400).json({ message: "El correo electrónico ya está registrado." })
-                return
-            }
+    if (req.method === 'POST') {
 
-            return User.create({ email, name })
-        })
-        .then((createdUser) => {
-            const { email, name, _id } = createdUser
+        User
+            .findOne({ email })
+            .then((foundUser) => {
+                if (foundUser) {
+                    res.status(400).json({ message: "El correo electrónico ya está registrado." })
+                    return
+                }
 
-            const user = { email, name, _id }
+                return User.create({ email, name })
+            })
+            .then((createdUser) => {
+                const { email, name, _id } = createdUser
 
-            return res.status(201).json({ user })
-        })
-        .catch(err => {
-            console.log(err)
-            return res.status(500).json({ message: "Internal Server Error" })
-        })
+                const user = { email, name, _id }
+
+                return res.status(201).json({ user })
+            })
+            .catch(err => {
+                console.log(err)
+                return res.status(500).json({ message: "Internal Server Error" })
+            })
+    }
 
 })
 
