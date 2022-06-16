@@ -11,6 +11,9 @@ module.exports = (app) => {
     cors({
       credentials: true,
       origin: process.env.ORIGIN || "http://localhost:3000",
+      allowedHeaders: ["*"],
+      allowedOrigins: ["https://remitt.vercel.app"],
+      allowedMethods: ["POST"]
     })
   )
 
