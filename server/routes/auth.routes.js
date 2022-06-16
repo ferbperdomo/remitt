@@ -19,29 +19,59 @@ router.post('/signup', (req, res, next) => {
     }
 
     if (req.method === 'POST') {
-
-        User
-            .findOne({ email })
-            .then((foundUser) => {
-                if (foundUser) {
-                    res.status(400).json({ message: "El correo electrónico ya está registrado." })
+        User.findOne({ email })
+            .then(user => {
+                if (user) {
+                    res.status(400).json({ message: 'El correo electrónico ya está en uso.' })
                     return
                 }
 
-                return User.create({ email, name })
-            })
-            .then((createdUser) => {
-                const { email, name, _id } = createdUser
+                const newUser = new User({
+                    name,
+                    email
+                })
 
-                const user = { email, name, _id }
-
-                return res.status(201).json({ user })
-            })
-            .catch(err => {
-                console.log(err)
-                return res.status(500).json({ message: "Internal Server Error" })
-            })
+                newUser.save()
+                    .then(user => {
+                        res.status(201).json({ message: 'Usuario creado correctamente.' })
+                    }
+                    )
+                    .catch(error => {
+                        res.status(400).json({ message: 'Error al crear el usuario.' })
+                    }
+                    )
+            }
+            )
+            .catch(error => {
+                res.status(400).json({ message: 'Error al crear el usuario.' })
+            }
+            )
     }
+
+
+
+    //     User
+    //         .findOne({ email })
+    //         .then((foundUser) => {
+    //             if (foundUser) {
+    //                 res.status(400).json({ message: "El correo electrónico ya está registrado." })
+    //                 return
+    //             }
+
+    //             return User.create({ email, name })
+    //         })
+    //         .then((createdUser) => {
+    //             const { email, name, _id } = createdUser
+
+    //             const user = { email, name, _id }
+
+    //             return res.status(201).json({ user })
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //             return res.status(500).json({ message: "Internal Server Error" })
+    //         })
+    // }
 
 })
 
