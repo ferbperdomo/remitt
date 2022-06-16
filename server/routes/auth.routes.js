@@ -1,9 +1,6 @@
 const express = require("express")
 const User = require("../models/User.model")
 const router = express.Router()
-const nodemailer = require("nodemailer")
-const xoauth2 = require("xoauth2")
-
 
 
 router.post('/signup', (req, res, next) => {
@@ -11,7 +8,7 @@ router.post('/signup', (req, res, next) => {
     const { email, name } = req.body
 
     if (email === '' || name === '') {
-        res.status(400).json({ message: "Introduce nombre y e-mail ." })
+        res.status(400).json({ message: "Introduce nombre y e-mail." })
         return
     }
 
@@ -90,7 +87,7 @@ router.post('/send_email', (req, res) => {
 
         if (err) {
             console.log('error', err)
-            res.status(500).json({ message: "Primer error: Internal Server Error" })
+            res.status(500).json({ message: "Internal Server Error" })
             console.log('info', res)
             return
         }
@@ -103,7 +100,7 @@ router.post('/send_email', (req, res) => {
 
 //         .catch (err => {
 //     console.log(err)
-//     res.status(500).json({ message: "Segundo error: Internal Server Error" })
+//     res.status(500).json({ message: "Internal Server Error" })
 // })
 // })
 

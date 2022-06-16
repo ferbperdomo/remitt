@@ -9,9 +9,7 @@ const app = express()
 require("./config")(app)
 
 const allRoutes = require("./routes/index.routes")
-app.use("/", allRoutes)
-
-const nodemailer = require("nodemailer")
+app.use("/api", allRoutes)
 
 require("./error-handling")(app)
 
