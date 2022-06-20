@@ -86,7 +86,7 @@
     {
         "name": "Novo",
         "url": "https://www.novo.co/"
-    }, 
+    },
     {
         "name": "OnJuno",
         "url": "https://www.onjuno.com"
@@ -94,5 +94,9 @@
     {
         "name": "Zolve",
         "url": "https://zolve.com/"
+    },
+    {
+        "name": "Xe",
+        "url": "https://www.xe.com/es/"
     }
 ]

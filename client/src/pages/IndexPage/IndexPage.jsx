@@ -146,13 +146,13 @@ const IndexPage = () => {
 
                                         }
                                     }
-
+                                    console.log(provider)
                                     return (
                                         <>
 
                                             <section className=" body-font relative">
 
-                                                <div className="container py-5 lg:py-10 mx-auto flex ">
+                                                <div className=" container py-5 lg:py-10 mx-auto flex ">
 
                                                     <div className="card bg-white rounded-lg p-8 flex flex-col md:flex-row w-full lg:w-10/12 lg:m-auto">
 

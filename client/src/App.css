@@ -18,9 +18,12 @@
   color: black;
 }
 
-.light .toggle,
-.light img .logo {
+.light .toggle {
   color: #1f2937;
+}
+
+.light img {
+  fill: #000;
 }
 
 .light .card {
@@ -38,10 +41,30 @@
   transform: translateX(-50%);
 }
 
-.switch label {
-  font-size: 10px;
+.light .react-switch-bg {
+  background: #1f2937 !important;
 }
 
-.react-switch-bg {
-  background: rgb(109, 107, 107) !important;
+.dark .react-switch-bg {
+  background: white !important;
+}
+
+.dark .icon {
+  height: 25px;
+  width: 25px;
+  padding-top: 3px;
+  padding-left: 5px;
+  color: #1f2937;
+}
+
+.light .icon {
+  height: 25px;
+  width: 25px;
+  padding-top: 3px;
+  padding-left: 5px;
+  color: white;
+}
+
+.dark .react-switch-handle {
+  background: #1f2937 !important;
 }

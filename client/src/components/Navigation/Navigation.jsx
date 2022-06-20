@@ -1,5 +1,5 @@
 import { Disclosure } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon, MoonIcon, SunIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import './navigation.css'
 import logo from './../../img/logo.svg'
@@ -52,13 +52,11 @@ export default function Example() {
                                             src={logo}
                                             alt="Workflow"
                                         />
+
                                     </Link>
                                 </div>
                                 <div className='switch flex flex-col'>
-                                    < Switch onChange={toggleTheme} checked={theme === "dark"} />
-                                    <label >
-                                        {theme === 'light' ? "light mode" : "dark mode"}
-                                    </label>
+                                    < Switch onChange={toggleTheme} checked={theme === "dark"} checkedIcon={<SunIcon className='icon ' />} uncheckedIcon={<MoonIcon className='icon' />} />
                                 </div>
                                 <div className="hidden sm:block sm:ml-6">
                                     <div className="flex space-x-4">
@@ -71,7 +69,6 @@ export default function Example() {
                                                     'px-3 py-2 rounded-md text-sm font-medium',
                                                     item.name === 'Crea una alerta' ? 'md: hidden' : 'inline-flex',
                                                 )}
-                                            // aria-current={item.current ? 'page' : undefined}
                                             >
                                                 {item.name}
                                             </Link>
@@ -106,7 +103,6 @@ export default function Example() {
                                             item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                             'px-3 py-2 rounded-md text-base font-medium'
                                         )}
-                                        aria-current={item.current ? 'page' : undefined}
                                     >
                                         {item.name}
                                     </Link>

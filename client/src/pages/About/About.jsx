@@ -109,6 +109,7 @@ export default function About() {
                                             <a
                                                 href={member.media}
                                                 target="_blank"
+                                                rel="noreferrer"
                                             >
                                                 <p className="text-lg leading-6 font-medium text-gray-300 py-3">{member.name}</p>
                                             </a>
