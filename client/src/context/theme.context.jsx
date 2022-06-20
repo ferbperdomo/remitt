@@ -3,8 +3,8 @@ import { createContext, useState } from 'react'
 const ThemeContext = createContext()
 
 function ThemeProviderWrapper(props) {
-  
-  const [theme, setTheme] = useState('light')
+
+  const [theme, setTheme] = useState('dark')
 
   const toggleTheme = () => {
     if (theme === 'light') {
