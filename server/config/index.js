@@ -12,19 +12,22 @@ module.exports = (app) => {
       {
         credentials: true,
         origin: process.env.ORIGIN || "http://localhost:3000",
-
+        maxAge: 0
       }
     )
+
   )
-  app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", process.env.ORIGIN || "http://localhost:3000")
-    res.header("Access-Control-Allow-Credentials", true)
-    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS")
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, Content-Length, X-Requested-With")
-    res.header("Access-Control-Allow-Headers", "*")
-    next()
-  }
-  )
+  app.use(express.static('public', {
+    etag: true,
+    lastModified: true,
+    setHeaders: (res, path) => {
+      if (path.endsWith('.html, .js, .svg')) {
+        res.setHeader('Cache-Control', 'no-cache');
+      } else if (hashRegExp.test(path)) {
+        res.setHeader('Cache-Control', 'max-age=31536000');
+      }
+    },
+  }))
 
   app.use(logger("dev"))
 

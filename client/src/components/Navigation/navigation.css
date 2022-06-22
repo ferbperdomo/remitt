@@ -6,3 +6,8 @@
 .toggle-checkbox:checked+.toggle-label {
     background-color: #1f2937;
 }
+
+.logo {
+    width: 30px;
+    height: 30px;
+}
